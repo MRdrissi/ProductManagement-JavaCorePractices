@@ -4,10 +4,12 @@
 package labs.pm.data;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Objects;
 
 import static java.math.RoundingMode.HALF_UP;
 
-public class Product implements Comparable<Product> {
+public abstract class Product  {
 
     private final int id;
     private final String name;
@@ -64,29 +66,35 @@ public class Product implements Comparable<Product> {
         return price.multiply(DISCOUNT_RATE).setScale(2, HALF_UP);
     }
 
+    public abstract Product applyRating(Rating newRating);
+
+    public LocalDate getBestBefore() {
+        return LocalDate.now();
+    }
+
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", discount=" + getDiscount() +
-                '}';
-    }
+        return
+                id +
+                ", " + name +
+                ", " + price +
+                ", " + getDiscount() +
+                ", " + rating.getStars() + ", "+getBestBefore();
 
-    public Product applyRating(Rating newRating){
-        return new Product(id,name,price,newRating);
     }
-
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if(!(obj instanceof Product other)) return false;
-        return other.getId() == this.id;
-    }
-
 
     @Override
-    public int compareTo(Product o) {
-        return this.name.compareTo(o.name);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        //ici l'utilisation equals de Objects verifie le param est non null avant comparaison
+        //alors que dans le design de cette class c excessive puisque le nom ne peut pas etre non null
+        //equals de la class de la class String suffit [this.name.equals(name,product.name)]
+        if(o instanceof Product product) return id == product.id && Objects.equals(name, product.name);
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
