@@ -7,7 +7,7 @@ import java.time.*;
 /**
  * @author marwa
  **/
-public class Food extends Product{
+public final class Food extends Product{
 
     private LocalDate bestBefore;
 
