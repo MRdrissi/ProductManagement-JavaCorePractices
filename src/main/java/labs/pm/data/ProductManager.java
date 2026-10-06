@@ -28,6 +28,12 @@ public class ProductManager {
         return this.product;
     }
 
+    public Product reviewProduct(Product product,int stars,String comments){
+        review = new Review(Rateable.convert(stars),comments);
+        this.product = product.applyRating(stars);
+        return this.product;
+    }
+
     public void printProductReport(){
         StringBuilder txt = new StringBuilder();
         txt.append(product);

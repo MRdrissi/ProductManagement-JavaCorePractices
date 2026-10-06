@@ -11,7 +11,7 @@ import java.util.Set;
 
 import static java.math.RoundingMode.HALF_UP;
 
-public sealed abstract class Product permits Food, Drink  {
+public sealed abstract class Product implements Rateable<Product> permits Food, Drink  {
 
     private final int id;
     private final String name;
