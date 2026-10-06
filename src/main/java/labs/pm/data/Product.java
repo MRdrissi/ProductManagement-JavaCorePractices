@@ -5,7 +5,9 @@ package labs.pm.data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import static java.math.RoundingMode.HALF_UP;
 
@@ -97,4 +99,5 @@ public sealed abstract class Product permits Food, Drink  {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 }
