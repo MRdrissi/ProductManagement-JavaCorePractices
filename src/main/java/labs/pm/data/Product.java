@@ -100,4 +100,5 @@ public sealed abstract class Product implements Rateable<Product> permits Food, 
         return Objects.hashCode(id);
     }
 
+
 }

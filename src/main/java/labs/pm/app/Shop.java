@@ -14,6 +14,9 @@ import java.time.*;
 public class Shop {
     public static void main(String[] args) {
 
+
+
+
         ProductManager pm = new ProductManager();
 
         Product p1 = pm.createProduct(101,"Tea",BigDecimal.valueOf(1.99), NOT_RATED);
@@ -29,6 +32,9 @@ public class Shop {
 
         p1 = pm.reviewProduct(p1,5,"Great Hot Cup of tea !");
         pm.printProductReport();
+
+
+
 
 
     }
