@@ -17,13 +17,13 @@ public class Shop {
 
 
 
-        ProductManager pm = new ProductManager();
+        ProductManager pm = new ProductManager(Locale.getDefault());
 
         Product p1 = pm.createProduct(101,"Tea",BigDecimal.valueOf(1.99), NOT_RATED);
 
-//        Product p2 = pm.createProduct(102,"Coffee",BigDecimal.valueOf(1.7), FIVE_STAR);
-//        Product p3 = pm.createProduct(103,"Donats",BigDecimal.valueOf(2.3),TWO_STAR,LocalDate.now().plusDays(2));
-//        Product p4 = pm.createProduct(1014,"Cookie",BigDecimal.valueOf(3.99), THREE_STAR,LocalDate.now());
+        Product p2 = pm.createProduct(102,"Coffee",BigDecimal.valueOf(1.7), FIVE_STAR);
+        Product p3 = pm.createProduct(103,"Donats",BigDecimal.valueOf(2.3),TWO_STAR,LocalDate.now().plusDays(2));
+        Product p4 = pm.createProduct(1014,"Cookie",BigDecimal.valueOf(3.99), THREE_STAR,LocalDate.now());
 //        Product p6 = pm.createProduct(104,"Chocolate",BigDecimal.valueOf(2.99),FIVE_STAR);
 //        Product p7 = pm.createProduct(104,"Chocolate",BigDecimal.valueOf(2.99),FIVE_STAR,LocalDate.now().plusDays(2));
 //        Product p8 = p4.applyRating(FIVE_STAR);
