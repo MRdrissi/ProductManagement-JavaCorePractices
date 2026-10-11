@@ -30,7 +30,15 @@ public class Shop {
 //        Product p9 = p1.applyRating(TWO_STAR);
 
 
+        pm.printProductReport();
+
         p1 = pm.reviewProduct(p1,5,"Great Hot Cup of tea !");
+        p1 = pm.reviewProduct(p1,4,"Great Hot Cup of tea !");
+        p1 = pm.reviewProduct(p1,3,"Great Hot Cup of tea !");
+        p1 = pm.reviewProduct(p1,4,"Great Hot Cup of tea !");
+        p1 = pm.reviewProduct(p1,1,"Great Hot Cup of tea !");
+
+
         pm.printProductReport();
 
 
