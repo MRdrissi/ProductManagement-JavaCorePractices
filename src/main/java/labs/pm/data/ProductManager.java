@@ -52,6 +52,21 @@ public class ProductManager {
 //        return this.product;
 //    }
 
+    public Product findProduct(int id){
+        Product result = null;
+        for(Product product : products.keySet()){
+            if(product.getId() == id){
+                result = product;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public Product reviewProduct(int id,int stars,String comments){
+        return reviewProduct(findProduct(id),stars,comments);
+    }
+
     public Product reviewProduct(Product product,int stars,String comments){
         //if(reviews[reviews.length - 1] != null) reviews = Arrays.copyOf(reviews,reviews.length+5);
         List<Review> reviews = products.get(product);
@@ -66,9 +81,13 @@ public class ProductManager {
         return product;
     }
 
+    public void  printProductReport(int id){
+        printProductReport(findProduct(id));
+    }
 
     public void printProductReport(Product product) {
         List<Review> reviews = products.get(product);
+        Collections.sort(reviews);
         StringBuilder txt = new StringBuilder();
         String type = (product instanceof Food) ?
                 resources.getString("food") :
@@ -92,6 +111,8 @@ public class ProductManager {
         }
         System.out.println(txt);
     }
+
+
 
 
 
@@ -133,6 +154,8 @@ public class ProductManager {
 //        txt.append('\n');
 //        System.out.println(txt);
 //    }
+
+
 
 
 

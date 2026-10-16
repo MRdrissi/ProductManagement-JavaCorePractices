@@ -18,14 +18,14 @@ public class Shop {
         ProductManager pm = new ProductManager(Locale.getDefault());
         Product p1 = pm.createProduct(101, "Tea",
                 BigDecimal.valueOf(1.99), Rating.NOT_RATED);
-        pm.printProductReport(p1);
-        p1 = pm.reviewProduct(p1, 4, "Nice hot cup of tea");
-        p1 = pm.reviewProduct(p1, 2, "Rather weak tea");
-        p1 = pm.reviewProduct(p1, 4, "Fine tea");
-        p1 = pm.reviewProduct(p1, 4, "Good tea");
-        p1 = pm.reviewProduct(p1, Rating.FIVE_STAR.ordinal(), "Perfect tea");
-        p1 = pm.reviewProduct(p1, Rating.THREE_STAR.ordinal(), "Just add some lemon");
-        pm.printProductReport(p1);
+        pm.printProductReport(101);
+        p1 = pm.reviewProduct(101, 4, "Nice hot cup of tea");
+        p1 = pm.reviewProduct(101, 2, "Rather weak tea");
+        p1 = pm.reviewProduct(101, 4, "Fine tea");
+        p1 = pm.reviewProduct(101, 4, "Good tea");
+        p1 = pm.reviewProduct(101, Rating.FIVE_STAR.ordinal(), "Perfect tea");
+        p1 = pm.reviewProduct(101, Rating.THREE_STAR.ordinal(), "Just add some lemon");
+        pm.printProductReport(101);
 
         Product p2 = pm.createProduct(102, "Coffee",
                 BigDecimal.valueOf(1.99), Rating.NOT_RATED);

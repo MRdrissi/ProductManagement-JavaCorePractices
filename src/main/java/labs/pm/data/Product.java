@@ -91,7 +91,7 @@ public sealed abstract class Product implements Rateable<Product> permits Food, 
         //ici l'utilisation equals de Objects verifie le param est non null avant comparaison
         //alors que dans le design de cette class c excessive puisque le nom ne peut pas etre non null
         //equals de la class de la class String suffit [this.name.equals(name,product.name)]
-        if(o instanceof Product product) return id == product.id && Objects.equals(name, product.name);
+        if(o instanceof Product product) return id == product.id;
         return false;
     }
 
