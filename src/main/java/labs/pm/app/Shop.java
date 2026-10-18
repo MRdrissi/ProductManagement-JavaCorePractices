@@ -16,6 +16,9 @@ public class Shop {
 
 
         ProductManager pm = new ProductManager(Locale.getDefault());
+        System.out.println(ProductManager.getSupportedLocales());
+        pm.changeLocale("ar-MA");
+
         Product p1 = pm.createProduct(101, "Tea",
                 BigDecimal.valueOf(1.99), Rating.NOT_RATED);
         pm.printProductReport(101);

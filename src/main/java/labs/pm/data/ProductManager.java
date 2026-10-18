@@ -15,20 +15,34 @@ import java.util.*;
 public class ProductManager {
 
     private ResourceFormatter formatter;
-    private static Map<String, ResourceFormatter> formatter =
+    private static Map<String, ResourceFormatter> formatters =
             Map.of("en-GB", new ResourceFormatter(Locale.UK),
                     "en-US", new ResourceFormatter(Locale.US),
                     "fr-FR", new ResourceFormatter(Locale.FRANCE),
                     "ru-RU", new ResourceFormatter(new Locale("ru", "RU")),
-                    "zh-CN", new ResourceFormatter(Locale.CHINA));
+                    "zh-CN", new ResourceFormatter(Locale.CHINA),
+                    "fr-MA", new ResourceFormatter(Locale.getDefault()),
+                    "ar-MA", new ResourceFormatter(new Locale("ar","MA")));
 
 
     private Map<Product, List<Review>> products = new HashMap<>();
 
     private static int count = 0;
 
-    public ProductManager(Locale locale) {
+    public void changeLocale(String languageTag){
+        formatter = formatters.getOrDefault(languageTag,formatters.get("fr-MA"));
+    }
 
+    public static Set<String> getSupportedLocales(){
+        return formatters.keySet();
+    }
+
+    public ProductManager(Locale locale) {
+        this(locale.toLanguageTag());
+    }
+
+    public ProductManager(String languageTag){
+        changeLocale(languageTag);
     }
 
     public Product createProduct(int id, String name, BigDecimal price, Rating rating, LocalDate bestBefore) {
@@ -42,18 +56,6 @@ public class ProductManager {
         products.putIfAbsent(product, new ArrayList<>());
         return product;
     }
-
-//    public Product reviewProduct(Product product,Rating rating,String comments){
-//        if(reviews[reviews.length - 1] == null){
-//            reviews[count++] = new Review(rating,comments);
-//        }else{
-//            reviews = Arrays.copyOf(reviews,reviews.length+5);
-//            reviews[count++] = new Review(rating,comments);
-//
-//        }
-//        this.product = product.applyRating(rating);
-//        return this.product;
-//    }
 
     public Product findProduct(int id) {
         Product result = null;
@@ -93,59 +95,18 @@ public class ProductManager {
         Collections.sort(reviews);
         StringBuilder txt = new StringBuilder();
 
-        txt.append();
+        txt.append(formatter.formatProduct(product));
         txt.append('\n');
         for (Review review : reviews) {
-            txt.append();
+            txt.append(formatter.FormatReview(review));
             txt.append('\n');
         }
         if (reviews.isEmpty()) {
-            txt.append(resources.getString("no.reviews"));
+            txt.append(formatter.getText("no.reviews"));
             txt.append('\n');
         }
         System.out.println(txt);
     }
-
-
-//    public void printProductReport(){
-//        StringBuilder txt = new StringBuilder();
-//        txt.append(product);
-//        txt.append('\n');
-//        if(review != null){
-//            txt.append(review);
-//        }else{
-//            txt.append("Not Reviewed");
-//        }
-//        txt.append('\n');
-//        System.out.println(txt);
-//    }
-
-//    public void printProductReport(Product product) {
-//        StringBuilder txt = new StringBuilder();
-
-    /// /        String type = (product instanceof Food ) ? resources.getString("food") :
-    /// /                          resources.getString("drink");
-//        txt.append(MessageFormat.format(resources.getString("product"),
-//                product.getName(),
-//                moneyFormat.format(product.getPrice()),
-//                product.getRating().getStars(),
-//                dateFormat.format(product.getBestBefore())));
-//        txt.append('\n');
-//        for(Review review : reviews){
-//            if(review == null){
-//                txt.append(resources.getString("no.reviews"));
-//                break;
-//            }
-//            txt.append(MessageFormat.format(resources.getString("review"),
-//                    review.rating().getStars(),
-//                    review.comments()));
-//            txt.append('\n');
-//        }
-//
-//        txt.append('\n');
-//        System.out.println(txt);
-//    }
-
 
     private static class ResourceFormatter {
 
