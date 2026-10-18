@@ -17,7 +17,8 @@ public class Shop {
 
         ProductManager pm = new ProductManager(Locale.getDefault());
         System.out.println(ProductManager.getSupportedLocales());
-        pm.changeLocale("ar-MA");
+        //pm.changeLocale("fr-MA");
+        pm.changeLocale("fr-MA");
 
         Product p1 = pm.createProduct(101, "Tea",
                 BigDecimal.valueOf(1.99), Rating.NOT_RATED);
@@ -87,5 +88,31 @@ public class Shop {
         p1 = pm.reviewProduct(p1,4,"Great Hot Cup of tea !");
         p1 = pm.reviewProduct(p1,1,"Great Hot Cup of tea !");
         pm.printProductReport();*/
+
+//    pm.printProducts(new Comparator<Product>() {
+//        @Override
+//        public int compare(Product o1, Product o2) {
+//            return o1.getName().compareTo(o2.getName());
+//        }
+//    });
+
+        Comparator<Product> ratingSorter = (x,y)-> x.getRating().ordinal() - y.getRating().ordinal();
+        Comparator<Product> priceSorter = (x,y)-> x.getPrice().compareTo(y.getPrice());
+
+        System.out.println("--------------------------------NAME------------------------");
+        pm.printProducts((x,y) -> x.getName().compareTo(y.getName()));
+        System.out.println("--------------------------------PRICE---------------------------");
+        pm.printProducts((x,y)-> x.getPrice().compareTo(y.getPrice()));
+        System.out.println("--------------------------------DISCOUNT--------------------------");
+        pm.printProducts((x,y)-> x.getDiscount().compareTo(y.getDiscount()));
+        System.out.println("--------------------------------RATING-----------------------");
+        pm.printProducts((x,y)-> x.getRating().ordinal() - y.getRating().ordinal());
+        System.out.println("--------------------------------BESTEBEFOREDATE-------------------------");
+        pm.printProducts((x,y)-> x.getBestBefore().compareTo(y.getBestBefore()));
+
+
+        System.out.println("--------------------------------RATING + PRICE-----------------------");
+        pm.printProducts(ratingSorter.thenComparing(priceSorter));
+
     }
 }
