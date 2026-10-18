@@ -3,7 +3,7 @@ package labs.pm.data;
 import java.util.Comparator;
 
 /**
- * @author marwa
+ * @author marwane
  **/
 public class ProductNameLenghtComparator implements Comparator<Product> {
 
