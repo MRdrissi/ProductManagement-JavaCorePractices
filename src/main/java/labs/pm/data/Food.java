@@ -7,12 +7,12 @@ import java.time.*;
 /**
  * @author marwane
  **/
-public final class Food extends Product{
+public final class Food extends Product {
 
     private LocalDate bestBefore;
 
-    Food(int id , String name , BigDecimal price , Rating rating , LocalDate bestBefore){
-        super(id,name,price,rating);
+    Food(int id, String name, BigDecimal price, Rating rating, LocalDate bestBefore) {
+        super(id, name, price, rating);
         this.bestBefore = bestBefore;
     }
 
@@ -28,11 +28,11 @@ public final class Food extends Product{
 
     @Override
     public Product applyRating(Rating newRating) {
-        return new Food(getId(),getName(),getPrice(),newRating,bestBefore);
+        return new Food(getId(), getName(), getPrice(), newRating, bestBefore);
     }
 
     @Override
     public String toString() {
-        return super.toString()+", "+bestBefore;
+        return super.toString() + ", " + bestBefore;
     }
 }

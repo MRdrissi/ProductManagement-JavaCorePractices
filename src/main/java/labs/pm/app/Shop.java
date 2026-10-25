@@ -68,6 +68,11 @@ public class Shop {
         p6 = pm.reviewProduct(p6, 1, "I don't get it!");
         pm.printProductReport(p6);
 
+        Product p7 = pm.createProduct(107, "Chocolate",
+                BigDecimal.valueOf(2.50), Rating.NOT_RATED,
+                LocalDate.now().plusDays(3));
+        pm.printProductReport(p7);
+
 
         /*ProductManager pm = new ProductManager(Locale.getDefault());
 
@@ -96,23 +101,26 @@ public class Shop {
 //        }
 //    });
 
-        Comparator<Product> ratingSorter = (x,y)-> x.getRating().ordinal() - y.getRating().ordinal();
-        Comparator<Product> priceSorter = (x,y)-> x.getPrice().compareTo(y.getPrice());
+        Comparator<Product> ratingSorter = (x, y) -> x.getRating().ordinal() - y.getRating().ordinal();
+        Comparator<Product> priceSorter = (x, y) -> x.getPrice().compareTo(y.getPrice());
 
         System.out.println("--------------------------------NAME------------------------");
-        pm.printProducts((x,y) -> x.getName().compareTo(y.getName()));
+        pm.printProducts((x, y) -> x.getName().compareTo(y.getName()));
         System.out.println("--------------------------------PRICE---------------------------");
-        pm.printProducts((x,y)-> x.getPrice().compareTo(y.getPrice()));
+        pm.printProducts((x, y) -> x.getPrice().compareTo(y.getPrice()));
         System.out.println("--------------------------------DISCOUNT--------------------------");
-        pm.printProducts((x,y)-> x.getDiscount().compareTo(y.getDiscount()));
+        pm.printProducts((x, y) -> x.getDiscount().compareTo(y.getDiscount()));
         System.out.println("--------------------------------RATING-----------------------");
-        pm.printProducts((x,y)-> x.getRating().ordinal() - y.getRating().ordinal());
+        pm.printProducts((x, y) -> x.getRating().ordinal() - y.getRating().ordinal());
         System.out.println("--------------------------------BESTEBEFOREDATE-------------------------");
-        pm.printProducts((x,y)-> x.getBestBefore().compareTo(y.getBestBefore()));
+        pm.printProducts((x, y) -> x.getBestBefore().compareTo(y.getBestBefore()));
 
 
         System.out.println("--------------------------------RATING + PRICE-----------------------");
         pm.printProducts(ratingSorter.thenComparing(priceSorter));
+
+
+        System.out.println(pm.findProduct(133));
 
     }
 }

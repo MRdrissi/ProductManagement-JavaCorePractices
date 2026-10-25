@@ -11,7 +11,7 @@ import java.util.Set;
 
 import static java.math.RoundingMode.HALF_UP;
 
-public sealed abstract class Product implements Rateable<Product> permits Food, Drink  {
+public sealed abstract class Product implements Rateable<Product> permits Food, Drink {
 
     private final int id;
     private final String name;
@@ -35,19 +35,19 @@ public sealed abstract class Product implements Rateable<Product> permits Food, 
 //        this(0,"no name",BigDecimal.ZERO);
 //    }
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public BigDecimal getPrice(){
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public Rating getRating(){
+    public Rating getRating() {
         return rating;
     }
 
@@ -64,7 +64,7 @@ public sealed abstract class Product implements Rateable<Product> permits Food, 
 //        this.price = price;
 //    }
 
-    public BigDecimal getDiscount(){
+    public BigDecimal getDiscount() {
         return price.multiply(DISCOUNT_RATE).setScale(2, HALF_UP);
     }
 
@@ -78,10 +78,10 @@ public sealed abstract class Product implements Rateable<Product> permits Food, 
     public String toString() {
         return
                 id +
-                ", " + name +
-                ", " + price +
-                ", " + getDiscount() +
-                ", " + rating.getStars() + ", "+getBestBefore();
+                        ", " + name +
+                        ", " + price +
+                        ", " + getDiscount() +
+                        ", " + rating.getStars() + ", " + getBestBefore();
 
     }
 
@@ -91,7 +91,7 @@ public sealed abstract class Product implements Rateable<Product> permits Food, 
         //ici l'utilisation equals de Objects verifie le param est non null avant comparaison
         //alors que dans le design de cette class c excessive puisque le nom ne peut pas etre non null
         //equals de la class de la class String suffit [this.name.equals(name,product.name)]
-        if(o instanceof Product product) return id == product.id;
+        if (o instanceof Product product) return id == product.id;
         return false;
     }
 
